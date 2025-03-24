@@ -1,0 +1,149 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { ExternalLink } from "lucide-react";
+
+const SOURCES = [
+  { name: "Toolify", id: "Toolify.ai" },
+  { name: "There's an AI for That", id: "There's an AI for That" },
+  { name: "Future Tools", id: "FutureTools.io" },
+  { name: "AI Top Tools", id: "AI Top Tools" },
+  { name: "AI Tools Directory", id: "AI Tools Directory" },
+];
+
+const FILTERS = [
+  { name: "New Tools", id: "new" },
+  { name: "Top Tools", id: "top" },
+];
+
+export default function Home() {
+  const [tools, setTools] = useState([]);
+  const [selectedSource, setSelectedSource] = useState("FutureTools.io");
+  const [selectedFilter, setSelectedFilter] = useState("new");
+
+  useEffect(() => {
+    fetch(`http://127.0.0.1:5001/api/tools?source=${selectedSource}&filter=${selectedFilter}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length > 0) {
+          const certifiedIndex = Math.floor(Math.random() * data.length);
+          data[certifiedIndex].certified = true;
+        }
+        setTools(data);
+      })
+      .catch((error) => console.error("Error fetching tools:", error));
+  }, [selectedSource, selectedFilter]);
+
+  return (
+    <div className="min-h-screen bg-gray-100 text-gray-900 flex flex-col items-center relative">
+      {/* Header Section */}
+      <header className="flex flex-col items-center justify-center py-12 px-10 bg-blue-500 text-white shadow-lg w-full text-center relative">
+        {/* Powered by and Navigation inside Header */}
+        <div className="absolute top-4 left-10 flex flex-col items-center">
+          <span className="text-xs uppercase tracking-wider mb-2">Powered by:</span>
+          <a href="https://www.twinbrain.ai" target="_blank" rel="noopener noreferrer">
+            <Image src="/logo.png" alt="Logo" width={100} height={60} />
+          </a>
+        </div>
+
+        {/* Title and Slogan Centered on Page */}
+        <div>
+          <h1 className="text-5xl font-bold">ToolCurator.ai</h1>
+          <p className="text-lg mt-2">Let us do the hard part for you</p>
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="absolute top-4 right-10 space-x-8 text-lg">
+          <a href="/submit-tool" className="hover:underline">Submit Tool</a>
+          <a href="/advertise" className="hover:underline">Advertise</a>
+          <a href="/newsletter" className="hover:underline">Newsletter</a>
+        </nav>
+      </header>
+
+      {/* Source Selection Bar */}
+      <section className="p-4 flex justify-center space-x-3">
+        {SOURCES.map((source) => (
+          <button
+            key={source.id}
+            onClick={() => setSelectedSource(source.id)}
+            className={`px-4 py-2 border rounded-lg ${
+              selectedSource === source.id ? "bg-blue-500 text-white" : "bg-white text-gray-900"
+            } hover:bg-blue-400 hover:text-white transition`}
+          >
+            {source.name}
+          </button>
+        ))}
+      </section>
+
+      {/* New & Top Tools Selection */}
+      <section className="p-4 flex justify-center space-x-3">
+        {FILTERS.map((filter) => (
+          <button
+            key={filter.id}
+            onClick={() => setSelectedFilter(filter.id)}
+            className={`px-4 py-2 border rounded-lg ${
+              selectedFilter === filter.id ? "bg-blue-500 text-white" : "bg-white text-gray-900"
+            } hover:bg-blue-400 hover:text-white transition`}
+          >
+            {filter.name}
+          </button>
+        ))}
+      </section>
+
+      <section className="p-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {tools.map((tool, index) => {
+            const imageUrl = tool.screenshot_url && tool.screenshot_url.trim() !== ""
+              ? tool.screenshot_url
+              : "/default-screenshot.png";
+
+            return (
+              <div
+                key={index}
+                className={`relative p-4 border rounded-lg shadow-lg bg-white flex flex-col items-center text-center ${tool.certified ? "border-4 border-yellow-500" : ""}`}
+              >
+                {tool.certified && (
+                  <div className="absolute -top-4 right-1/4 transform translate-x-1/2 flex items-center space-x-2 bg-yellow-500 text-white font-bold text-sm px-3 py-1 rounded-full shadow-lg">
+                    <span>⭐ Nik and Travis Certified!</span>
+                  </div>
+                )}
+                <Image
+                  src={imageUrl}
+                  alt={`${tool.name} Screenshot`}
+                  width={1280}
+                  height={800}
+                  className="w-full h-auto rounded-lg mb-4"
+                  unoptimized
+                />
+                <h3 className="text-lg font-bold flex items-center">
+                  <a href={tool.source_url} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
+                    {tool.name}
+                  </a>
+                  <ExternalLink className="ml-2 w-4 h-4 text-gray-500" />
+                </h3>
+                <p className="text-gray-600 text-center">{tool.short_description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Floating Newsletter Section */}
+      <section className="fixed bottom-0 w-full bg-blue-500 text-white py-4 flex flex-col items-center shadow-lg">
+        <h2 className="text-xl font-bold">Stay Updated</h2>
+        <p className="mt-1 text-sm">Subscribe to our newsletter for the latest AI tools and insights.</p>
+        <form className="mt-2 flex space-x-2">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="px-4 py-1 rounded-lg text-gray-900 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <button className="px-4 py-1 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition">
+            Subscribe
+          </button>
+        </form>
+      </section>
+    </div>
+  );
+}
