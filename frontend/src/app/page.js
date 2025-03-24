@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
+import { Menu, X } from "lucide-react"
 
 const SOURCES = [
   { name: "Future Tools", id: "FutureTools.io" },
@@ -11,6 +12,7 @@ const SOURCES = [
   { name: "AI Top Tools", id: "AI Top Tools" },
   { name: "AI Tools Directory", id: "AI Tools Directory" },
 ];
+
 
 const FILTERS = [
   { name: "New Tools", id: "new" },
@@ -24,6 +26,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [showNewsletter, setShowNewsletter] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     fetch(`https://tool-curator.onrender.com/api/tools?source=${selectedSource}&filter=${selectedFilter}`)
@@ -76,34 +79,55 @@ export default function Home() {
     setEmail("");
   };
 
-  return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 flex flex-col items-center relative">
-      {/* Header Section */}
-      <header className="flex flex-col items-center justify-center py-12 px-10 bg-gradient-to-r from-blue-300 via-indigo-400 to-purple-600
- text-white shadow-lg w-full text-center relative">
-        {/* Powered by and Navigation inside Header */}
-        <div className="absolute top-4 left-10 flex flex-col items-center">
-          <span className="text-xs uppercase tracking-wider text-gray-900 mb-2">Powered by:</span>
+return (
+  <div className="min-h-screen bg-gray-100 text-gray-900 flex flex-col items-center relative">
+    {/* Header Section */}
+    <header className="relative w-full bg-gradient-to-r from-blue-300 via-indigo-400 to-purple-600 text-white shadow-lg px-4 py-8 md:px-10 md:py-12">
+      {/* Top: Logo + Hamburger + Nav */}
+      <div className="flex items-center justify-between w-full mb-6">
+        {/* Left: Logo + Powered By */}
+        <div className="flex flex-col">
+          <span className="text-xs tracking-wider text-black font-semibold">POWERED BY:</span>
           <a href="https://www.twinbrain.ai" target="_blank" rel="noopener noreferrer">
-            <Image src="/logo.png" alt="Logo" width={120} height={70} />
+            <Image src="/logo.png" alt="TwinBrain Logo" width={100} height={60} />
           </a>
         </div>
 
-        {/* Title and Slogan Centered on Page */}
-        <div>
-          <h1 className="text-5xl font-bold">ToolCurator.ai</h1>
-          <p className="text-lg mt-2">We aggregate, curate, and simplify AI tool discovery</p>
-          <p className="text-md mt-1 text-white-800">Spend your time building, not searching</p>
-        </div>
-
-        {/* Navigation Links */}
-        <nav className="absolute top-4 right-10 space-x-8 text-lg">
+        {/* Desktop Nav */}
+        <nav className="hidden sm:flex gap-6 text-sm sm:text-base text-white font-semibold">
           <a href="/submit-tool" className="hover:underline">Submit Tool</a>
           <a href="/advertise" className="hover:underline">Advertise</a>
-          <a href="/blog" className="hover:underline">Blog</a>  {/* NEW BLOG LINK */}
+          <a href="/blog" className="hover:underline">Blog</a>
           <a href="#fixed-newsletter" className="hover:underline">Newsletter</a>
         </nav>
-      </header>
+
+        {/* Mobile Hamburger */}
+        <div className="sm:hidden">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="text-white focus:outline-none">
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Dropdown */}
+      {menuOpen && (
+        <div className="absolute top-20 left-0 right-0 bg-blue-500 text-white flex flex-col items-center py-4 space-y-4 sm:hidden z-50 shadow-lg">
+          <a href="/submit-tool" onClick={() => setMenuOpen(false)}>Submit Tool</a>
+          <a href="/advertise" onClick={() => setMenuOpen(false)}>Advertise</a>
+          <a href="/blog" onClick={() => setMenuOpen(false)}>Blog</a>
+          <a href="#fixed-newsletter" onClick={() => setMenuOpen(false)}>Newsletter</a>
+        </div>
+      )}
+
+      {/* Centered Title */}
+      <div className="text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-2">ToolCurator.ai</h1>
+        <p className="text-md sm:text-lg md:text-xl">We aggregate, curate, and simplify AI tool discovery</p>
+        <p className="text-sm sm:text-md mt-1 text-white/90">Spend your time building, not searching</p>
+      </div>
+    </header>
+
+
 
       {/* Source Selection Bar */}
       <section className="p-4 flex justify-center space-x-3">
