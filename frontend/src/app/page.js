@@ -26,7 +26,7 @@ export default function Home() {
   const [showNewsletter, setShowNewsletter] = useState(true);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:5001/api/tools?source=${selectedSource}&filter=${selectedFilter}`)
+    fetch(`https://tool-curator.onrender.com/api/tools?source=${selectedSource}&filter=${selectedFilter}`)
       .then((response) => response.json())
       .then((data) => {
         // Slice to 8 tools if more than 8 and filter is 'new'
