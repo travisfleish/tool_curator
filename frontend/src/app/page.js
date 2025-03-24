@@ -130,12 +130,12 @@ return (
 
 
       {/* Source Selection Bar */}
-      <section className="p-4 flex justify-center space-x-3">
+      <section className="p-4 grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center gap-3">
         {SOURCES.map((source) => (
           <button
             key={source.id}
             onClick={() => setSelectedSource(source.id)}
-            className={`px-4 py-2 border rounded-lg ${
+            className={`px-3 py-2 border rounded-lg text-sm sm:text-base text-center ${
               selectedSource === source.id ? "bg-blue-500 text-white" : "bg-white text-gray-900"
             } hover:bg-blue-400 hover:text-white transition`}
           >
@@ -143,6 +143,7 @@ return (
           </button>
         ))}
       </section>
+
 
       {/* New & Top Tools Selection - Now uncommented */}
       <section className="p-4 flex justify-center space-x-3">
@@ -220,7 +221,7 @@ return (
 
       {/* Floating Newsletter Section */}
      {showNewsletter && (
-      <section className="fixed bottom-0 w-full bg-blue-400 text-white py-4 flex flex-col items-center shadow-lg">
+      <section className="hidden sm:flex fixed bottom-0 w-full bg-blue-400 text-white py-4 flex-col items-center shadow-lg">
         <h2 className="text-xl font-bold">Stay Updated</h2>
         <p className="mt-1 text-sm">Subscribe to our newsletter for the latest AI tools and insights.</p>
         <form className="mt-2 flex space-x-2" onSubmit={handleSubscribe}>
@@ -258,7 +259,7 @@ return (
     {/* First Video */}
     <iframe
       className="w-4/5 h-[500px] max-w-[900px]"
-      src="https://www.youtube.com/embed/jpqXbk4saFk"
+      src="https://www.youtube.com/embed/Ej9zCLI2ZdY"
       title="YouTube video player"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -268,7 +269,7 @@ return (
     {/* Second Video */}
     <iframe
       className="w-4/5 h-[500px] max-w-[900px]"
-      src="https://www.youtube.com/embed/1OTbpk4YR2I"
+      src="https://www.youtube.com/embed/gqqvI1oJdZs"
       title="YouTube video player"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
