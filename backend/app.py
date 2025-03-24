@@ -78,12 +78,11 @@ def get_ai_tools():
             "category": tool[3],
             "source": tool[4],
             "source_url": tool[5],
-            "screenshot_url": f"http://127.0.0.1:5001{tool[6]}" if tool[6] else "/default-screenshot.png",
-            "type": tool[7]  # Include the type in the response
+            "screenshot_url": f"{request.host_url.rstrip('/')}/static/screenshots/{tool[6].replace('/static/screenshots/', '')}" if tool[6] else "/default-screenshot.png",
+            "type": tool[7]
         }
         for tool in tools
     ])
-
 
 # Serve screenshots
 @app.route('/static/screenshots/<path:filename>')
