@@ -161,6 +161,9 @@ def subscribe_newsletter():
         conn.close()
         return jsonify({"error": "Subscription failed"}), 500
 
+@app.route('/')
+def home():
+    return jsonify({"message": "ToolCurator.ai API is live!"})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
