@@ -86,12 +86,16 @@ return (
       {/* Top: Logo + Hamburger + Nav */}
       <div className="flex items-center justify-between w-full mb-6">
         {/* Left: Logo + Powered By */}
-        <div className="flex flex-col">
-          <span className="text-xs tracking-wider text-black font-semibold">POWERED BY:</span>
+        <div className="flex flex-col items-center gap-3">
+          <span className="text-xs tracking-wider text-black font-semibold leading-tight text-center">
+            POWERED BY:
+          </span>
           <a href="https://www.twinbrain.ai" target="_blank" rel="noopener noreferrer">
-            <Image src="/logo.png" alt="TwinBrain Logo" width={100} height={60} />
+            <Image src="/logo.png" alt="TwinBrain Logo" width={100} height={50} />
           </a>
         </div>
+
+
 
         {/* Desktop Nav */}
         <nav className="hidden sm:flex gap-6 text-sm sm:text-base text-white font-semibold">
@@ -122,7 +126,7 @@ return (
       {/* Centered Title */}
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-2">ToolCurator.ai</h1>
-        <p className="text-md sm:text-lg md:text-xl">We aggregate, curate, and simplify AI tool discovery</p>
+        <p className="hidden sm:block text-md sm:text-lg md:text-xl">We aggregate, curate, and simplify AI tool discovery</p>
         <p className="text-sm sm:text-md mt-1 text-white/90">Spend your time building, not searching</p>
       </div>
     </header>
