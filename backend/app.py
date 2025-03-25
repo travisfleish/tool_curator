@@ -3,6 +3,7 @@ from flask_cors import CORS
 import psycopg2
 import os
 import requests
+import sys
 from datetime import datetime
 
 app = Flask(__name__)
@@ -160,7 +161,7 @@ def subscribe_newsletter():
 
 
     except Exception as e:
-        print("❌ Database error:", str(e))  # This is NOT showing in logs currently
+        print("❌ Database error:", str(e), file=sys.stderr, flush=True)
         conn.rollback()
         cur.close()
         conn.close()
