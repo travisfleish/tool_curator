@@ -12,8 +12,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SCREENSHOTS_DIR = os.path.join(PROJECT_ROOT, "backend", "static", "screenshots")
 
 # Tool details
-TOOL_NAME = "ReconXi"
-TOOL_URL = "https://www.reconxi.com/"  # URL for ReconXi
+TOOL_NAME = "AutoWrite"
+TOOL_URL = "https://autowrite.app/"  # URL for ReconXi
 
 
 def get_tool_url_from_db():

@@ -159,14 +159,19 @@ export default function Home() {
         className="relative w-full bg-gradient-to-r from-blue-300 via-indigo-400 to-purple-600 text-white shadow-lg px-4 py-8 md:px-10 md:py-12"
       >
         {/* Top: Logo + Hamburger + Nav */}
-        <div className="flex items-center justify-between w-full mb-6">
+        <div className="flex items-center justify-between w-full mb-4 md:mb-6">
           {/* Left: Logo + Powered By */}
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-1 mt-2">
             <span className="text-xs tracking-wider text-black font-semibold leading-tight text-center">
               POWERED BY:
             </span>
             <a href="https://www.twinbrain.ai" target="_blank" rel="noopener noreferrer">
-              <Image src="/logo.png" alt="TwinBrain Logo" width={100} height={50} />
+              <Image
+                src="/logo.png"
+                alt="TwinBrain Logo"
+                width={isMobile ? 70 : 100}
+                height={isMobile ? 35 : 50}
+              />
             </a>
           </div>
 
@@ -195,9 +200,9 @@ export default function Home() {
             }}
           >
             {/* Top Row: Logo and Close Button */}
-            <div className="flex items-center justify-between pt-2 pb-1">
+            <div className="flex items-center justify-between pt-4 pb-2">
               <a href="https://www.twinbrain.ai" target="_blank" rel="noopener noreferrer">
-                <Image src="/logo.png" alt="TwinBrain Logo" width={70} height={35} />
+                <Image src="/logo.png" alt="TwinBrain Logo" width={60} height={30} />
               </a>
               <button
                 onClick={() => setMenuOpen(false)}
@@ -207,10 +212,10 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Nav Links Container - More compact */}
-            <div className="flex flex-col items-center space-y-3 py-2">
-              <h1 className={`${inter.className} text-xl font-semibold tracking-tight mb-5`}>ToolCurator.ai</h1>
-              <div className="grid grid-cols-2 gap-x-8 gap-y-4 text-center">
+            {/* Nav Links Container with improved spacing */}
+            <div className="flex flex-col items-center space-y-4 py-4 mt-2 pb-12">
+              <h1 className={`${inter.className} text-xl font-semibold tracking-tight mb-6`}>ToolCurator.ai</h1>
+              <div className="grid grid-cols-2 gap-x-10 gap-y-6 text-center w-full max-w-xs">
                 <a href="/submit-tool" onClick={() => setMenuOpen(false)} className="hover:underline text-base font-medium">Submit Tool</a>
                 <a href="/advertise" onClick={() => setMenuOpen(false)} className="hover:underline text-base font-medium">Advertise</a>
                 <a href="https://www.twinbrain.ai/blog" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="hover:underline text-base font-medium">Blog</a>
@@ -221,14 +226,14 @@ export default function Home() {
         )}
 
         {/* Modern Styled Title Section */}
-        <div className="text-center mt-2">
+        <div className="text-center mt-2 pb-8">
           <h1 className={`${inter.className} text-3xl sm:text-4xl md:text-5xl leading-tight mb-3 tracking-tight`}>
             <span className="font-normal text-white">Tool</span>
             <span className="font-bold text-white">Curator</span>
             <span className="font-bold text-yellow-300">.ai</span>
           </h1>
           <p className={`${poppins.className} hidden sm:block text-md sm:text-lg md:text-xl mt-2 font-light`}>We aggregate, curate, and simplify AI tool discovery</p>
-          <p className={`${poppins.className} text-sm sm:text-md mt-2 text-white/90 font-light`}>Spend your time building, not searching</p>
+          <p className={`${poppins.className} text-sm sm:text-md mt-2 mb-4 text-white/90 font-light`}>Spend your time building, not searching</p>
         </div>
       </header>
 
@@ -442,16 +447,18 @@ export default function Home() {
       {/* Embedded YouTube Videos Section - Improved for mobile */}
       <div className="w-full flex flex-col items-center py-8">
         {/* Follow us Header & YouTube Link */}
-        {/*<div className="text-center mb-6 px-4">*/}
-        {/*  <a*/}
-        {/*    href="https://www.youtube.com/channel/UCzpdjfdL0QvehLHxHGCa25A"*/}
-        {/*    target="_blank"*/}
-        {/*    rel="noopener noreferrer"*/}
-        {/*    className="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 transition"*/}
-        {/*  >*/}
-        {/*    <span className={`${inter.className} text-lg font-semibold`}>Subscribe to the TwinBrainAI YouTube channel!!</span>*/}
-        {/*  </a>*/}
-        {/*</div>*/}
+        <div className="text-center mb-6 px-4">
+          {/* Commenting out the YouTube subscribe link while keeping it in the code
+          <a
+            href="https://www.youtube.com/channel/UCzpdjfdL0QvehLHxHGCa25A"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 transition"
+          >
+            <span className={`${inter.className} text-lg font-semibold`}>Subscribe to the TwinBrainAI YouTube channel!!</span>
+          </a>
+          */}
+        </div>
 
         {/* YouTube Videos - Removed excessive black space on mobile */}
         <section className="w-full flex flex-wrap justify-center gap-6 px-4">
