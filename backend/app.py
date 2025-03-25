@@ -3,6 +3,7 @@ from flask_cors import CORS
 import psycopg2
 import os
 import requests
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)  # Allow requests from Next.js frontend
@@ -146,7 +147,10 @@ def subscribe_newsletter():
             return jsonify({"error": "Email already subscribed"}), 400
 
         # Insert new subscriber
-        cur.execute("INSERT INTO newsletter_subscribers (email, subscribed_at) VALUES (%s, NOW())", (email,))
+        cur.execute(
+            "INSERT INTO newsletter_subscribers (email, subscribed_at) VALUES (%s, NOW())",
+            (email,)
+        )
         conn.commit()
 
         cur.close()
@@ -154,11 +158,14 @@ def subscribe_newsletter():
 
         return jsonify({"message": "Successfully subscribed!"}), 200
 
+
     except Exception as e:
+        print("❌ Database error:", str(e))  # This is NOT showing in logs currently
         conn.rollback()
         cur.close()
         conn.close()
-        return jsonify({"error": "Subscription failed"}), 500
+        return jsonify({"error": str(e)}), 500  # TEMPORARY: send actual DB error to browser
+
 
 @app.route('/')
 def home():
