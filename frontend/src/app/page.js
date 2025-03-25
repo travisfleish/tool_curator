@@ -442,16 +442,16 @@ export default function Home() {
       {/* Embedded YouTube Videos Section - Improved for mobile */}
       <div className="w-full flex flex-col items-center py-8">
         {/* Follow us Header & YouTube Link */}
-        <div className="text-center mb-6 px-4">
-          <a
-            href="https://www.youtube.com/channel/UCzpdjfdL0QvehLHxHGCa25A"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 transition"
-          >
-            <span className={`${inter.className} text-lg font-semibold`}>Subscribe to the TwinBrainAI YouTube channel!!</span>
-          </a>
-        </div>
+        {/*<div className="text-center mb-6 px-4">*/}
+        {/*  <a*/}
+        {/*    href="https://www.youtube.com/channel/UCzpdjfdL0QvehLHxHGCa25A"*/}
+        {/*    target="_blank"*/}
+        {/*    rel="noopener noreferrer"*/}
+        {/*    className="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 transition"*/}
+        {/*  >*/}
+        {/*    <span className={`${inter.className} text-lg font-semibold`}>Subscribe to the TwinBrainAI YouTube channel!!</span>*/}
+        {/*  </a>*/}
+        {/*</div>*/}
 
         {/* YouTube Videos - Removed excessive black space on mobile */}
         <section className="w-full flex flex-wrap justify-center gap-6 px-4">
