@@ -101,7 +101,7 @@ return (
         <nav className="hidden sm:flex gap-6 text-sm sm:text-base text-white font-semibold">
           <a href="/submit-tool" className="hover:underline">Submit Tool</a>
           <a href="/advertise" className="hover:underline">Advertise</a>
-          <a href="/blog" className="hover:underline">Blog</a>
+          <a href="https://www.twinbrain.ai/blog" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>Blog</a>
           <a href="#fixed-newsletter" className="hover:underline">Newsletter</a>
         </nav>
 
@@ -115,11 +115,28 @@ return (
 
       {/* Mobile Dropdown */}
       {menuOpen && (
-        <div className="absolute top-20 left-0 right-0 bg-blue-500 text-white flex flex-col items-center py-4 space-y-4 sm:hidden z-50 shadow-lg">
-          <a href="/submit-tool" onClick={() => setMenuOpen(false)}>Submit Tool</a>
-          <a href="/advertise" onClick={() => setMenuOpen(false)}>Advertise</a>
-          <a href="/blog" onClick={() => setMenuOpen(false)}>Blog</a>
-          <a href="#fixed-newsletter" onClick={() => setMenuOpen(false)}>Newsletter</a>
+        <div className="absolute top-0 left-0 right-0 bg-blue-400 text-gray-900 z-40 h-[250px] px-4 shadow-md animate-fade-in border-b border-gray-200 overflow-hidden">
+          {/* Top Row: Logo and Close Button */}
+          <div className="flex items-center justify-between px-1 pt-3 pb-1">
+            <a href="https://www.twinbrain.ai" target="_blank" rel="noopener noreferrer">
+              <Image src="/logo.png" alt="TwinBrain Logo" width={80} height={40} />
+            </a>
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="text-gray-600 hover:text-red-500 text-2xl font-light"
+            >
+              ×
+            </button>
+          </div>
+
+          {/* Nav Links Container */}
+          <div className="flex flex-col items-center justify-center h-[190px] space-y-2">
+            <h1 className="text-lg font-semibold tracking-tight">ToolCurator.ai</h1>
+            <a href="/submit-tool" onClick={() => setMenuOpen(false)} className="hover:underline text-base">Submit Tool</a>
+            <a href="/advertise" onClick={() => setMenuOpen(false)} className="hover:underline text-base">Advertise</a>
+            <a href="https://www.twinbrain.ai/blog" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="hover:underline text-base">Blog</a>
+            <a href="#fixed-newsletter" onClick={() => setMenuOpen(false)} className="hover:underline text-base">Newsletter</a>
+          </div>
         </div>
       )}
 
@@ -281,6 +298,40 @@ return (
     ></iframe>
   </section>
 </div>
+
+    <footer className="w-full bg-white text-gray-700 border-t mt-10 py-8 flex flex-col items-center space-y-4">
+      {/* Logo */}
+      <a href="https://www.twinbrain.ai" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center space-y-2">
+        <Image src="/logo.png" alt="TwinBrain Logo" width={120} height={60} />
+      </a>
+
+      {/* LinkedIn Icon */}
+      <div className="mt-2">
+        <a
+          href="https://www.linkedin.com/company/twinbrain-ai/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            viewBox="0 0 24 24"
+            width="32"
+            height="32"
+            fill="#0A66C2"
+          >
+            <title>LinkedIn</title>
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.937v5.669H9.351V9h3.414v1.561h.049c.476-.9 1.637-1.852 3.368-1.852 3.6 0 4.266 2.368 4.266 5.452v6.291zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM6.977 20.452H3.696V9h3.281v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.555C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.278V1.723C24 .771 23.2 0 22.222 0z"/>
+          </svg>
+        </a>
+      </div>
+
+
+      <p className="text-xs text-gray-500">&copy; {new Date().getFullYear()} TwinBrain AI. All rights reserved.</p>
+    </footer>
+
+
 
     </div>
   );
