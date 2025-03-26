@@ -153,15 +153,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex flex-col items-center relative">
-      {/* Header Section */}
+      {/* Header Section with Reduced Padding */}
       <header
         ref={headerRef}
-        className="relative w-full bg-gradient-to-r from-blue-300 via-indigo-400 to-purple-600 text-white shadow-lg px-4 py-8 md:px-10 md:py-12"
+        className="relative w-full bg-gradient-to-r from-blue-300 via-indigo-400 to-purple-600 text-white shadow-lg px-4 py-4 md:px-10 md:py-6"
       >
         {/* Top: Logo + Hamburger + Nav */}
-        <div className="flex items-center justify-between w-full mb-4 md:mb-6">
+        <div className="flex items-center justify-between w-full mb-2 md:mb-3">
           {/* Left: Logo + Powered By */}
-          <div className="flex flex-col items-center gap-1 mt-2">
+          <div className="flex flex-col items-center gap-1">
             <span className="text-xs tracking-wider text-black font-semibold leading-tight text-center">
               POWERED BY:
             </span>
@@ -225,15 +225,15 @@ export default function Home() {
           </div>
         )}
 
-        {/* Modern Styled Title Section */}
-        <div className="text-center mt-2 pb-8">
-          <h1 className={`${inter.className} text-3xl sm:text-4xl md:text-5xl leading-tight mb-3 tracking-tight`}>
+        {/* Modern Styled Title Section with Reduced Padding */}
+        <div className="text-center mt-1 pb-4">
+          <h1 className={`${inter.className} text-3xl sm:text-4xl md:text-5xl leading-tight mb-1 tracking-tight`}>
             <span className="font-normal text-white">Tool</span>
             <span className="font-bold text-white">Curator</span>
             <span className="font-bold text-yellow-300">.ai</span>
           </h1>
-          <p className={`${poppins.className} hidden sm:block text-md sm:text-lg md:text-xl mt-2 font-light`}>We aggregate, curate, and simplify AI tool discovery</p>
-          <p className={`${poppins.className} text-sm sm:text-md mt-2 mb-4 text-white/90 font-light`}>Spend your time building, not searching</p>
+          <p className={`${poppins.className} hidden sm:block text-md sm:text-lg md:text-xl mt-1 font-light`}>We aggregate, curate, and simplify AI tool discovery</p>
+          <p className={`${poppins.className} text-sm sm:text-md mt-1 mb-2 text-white/90 font-light`}>Spend your time building, not searching</p>
         </div>
       </header>
 
@@ -415,46 +415,138 @@ export default function Home() {
       </section>
 
       {/* Fixed Newsletter Call to Action Below Tools - Improved mobile width */}
-      <section id="fixed-newsletter" className="w-full bg-gray-200 py-8 flex flex-col items-center shadow-md mt-10 px-4 sm:px-0">
-        <div className="max-w-4xl text-center w-full">
-          <h2 className={`${inter.className} text-2xl font-bold mb-2`}>Sign up for our Tool-of-the-Day Newsletter!</h2>
-          <p className="text-sm text-gray-600 mb-4">We respect your email inbox and will never spam!</p>
-          <form className="mt-2 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 justify-center w-full" onSubmit={handleSubscribe}>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="px-4 py-2 sm:w-80 w-full rounded-lg text-gray-900 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-            <button type="submit" className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
-              Subscribe
-            </button>
-          </form>
-          <p className="text-sm mt-2 text-green-600">{message}</p>
+      <section id="fixed-newsletter" className="w-full bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500 py-10 flex flex-col items-center shadow-md mt-10 px-4 sm:px-0">
+        <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between">
+          {/* Left side: Compelling copy */}
+          <div className="md:w-1/2 mb-6 md:mb-0 md:pr-8 text-center md:text-left text-white">
+            <h2 className={`${inter.className} text-2xl md:text-3xl font-bold`}>Get AI Tools in Your Inbox! 🚀</h2>
+            <p className="mt-2 text-lg">
+              <span className="font-semibold">Join 5,000+ innovators</span>
+              <span className="hidden md:inline"> Stay ahead of the curve before these tools go mainstream.</span>
+            </p>
+            <p className="mt-1 text-sm text-yellow-200 font-medium">
+              <span className="inline-block bg-blue-600 rounded-full px-2 py-1 mr-2">⚡ EXCLUSIVE</span>
+              First access to new tools + expert curation
+            </p>
+          </div>
+
+          {/* Right side: Form */}
+          <div className="md:w-1/2 w-full">
+            <form className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2" onSubmit={handleSubscribe}>
+              <input
+                type="email"
+                placeholder="Your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="px-6 py-3 rounded-lg text-gray-900 border-2 border-white focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent w-full sm:w-auto flex-grow text-base shadow-md"
+                required
+              />
+              <button
+                type="submit"
+                className="px-6 py-3 bg-yellow-500 text-white font-bold rounded-lg hover:bg-yellow-600 transition shadow-md w-full sm:w-auto whitespace-nowrap"
+              >
+                Get Weekly Tools
+              </button>
+            </form>
+            {message && (
+              <p className="text-lg mt-2 font-medium text-center sm:text-left text-white">{message}</p>
+            )}
+            <p className="text-xs mt-2 text-white/80 text-center sm:text-left">No spam ever. Unsubscribe with one click.</p>
+          </div>
         </div>
       </section>
 
-      {/* Floating Newsletter Section - Improved for mobile */}
+      {/* Enhanced Floating Newsletter Section with Side-by-Side Layout */}
       {showNewsletter && (
-        <section className="hidden sm:flex fixed bottom-0 w-full bg-blue-400 text-white py-4 flex-col items-center shadow-lg">
-          <h2 className={`${inter.className} text-xl font-bold`}>Stay Updated</h2>
-          <p className="mt-1 text-sm">Subscribe to our newsletter for the latest AI tools and insights.</p>
-          <form className="mt-2 flex space-x-2" onSubmit={handleSubscribe}>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="px-4 py-1 rounded-lg text-gray-900 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-            <button type="submit" className="px-4 py-1 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition">
-              Subscribe
+        <section
+          className="hidden sm:block fixed bottom-0 w-full bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500 text-white py-6 shadow-xl z-50"
+          style={{
+            animation: 'slideUp 0.5s ease-out',
+          }}
+        >
+          <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+            {/* Left side: Compelling copy */}
+            <div className="md:w-1/2 mb-4 md:mb-0 md:pr-8">
+              <h2 className={`${inter.className} text-2xl md:text-3xl font-bold`}>Get AI Tools in Your Inbox! 🚀</h2>
+              <p className="mt-2 text-lg">
+                <span className="font-semibold">Join 5,000+ innovators</span> discovering game-changing AI tools weekly.
+                <span className="hidden md:inline"> Stay ahead of the curve before these tools go mainstream.</span>
+              </p>
+              <p className="mt-1 text-sm text-yellow-200 font-medium">
+                <span className="inline-block bg-blue-600 rounded-full px-2 py-1 mr-2">⚡ EXCLUSIVE</span>
+                First access to new tools + expert curation
+              </p>
+            </div>
+
+            {/* Right side: Form */}
+            <div className="md:w-1/2">
+              <form className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2" onSubmit={handleSubscribe}>
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="px-6 py-3 rounded-lg text-gray-900 border-2 border-white focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent w-full sm:w-auto flex-grow text-base shadow-md"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3 bg-yellow-500 text-white font-bold rounded-lg hover:bg-yellow-600 transition shadow-md w-full sm:w-auto whitespace-nowrap"
+                  style={{
+                    animation: 'pulse 2s infinite',
+                  }}
+                >
+                  Get Weekly Tools
+                </button>
+              </form>
+              {message && (
+                <p className="text-lg mt-2 font-medium text-center sm:text-left">{message}</p>
+              )}
+              <p className="text-xs mt-2 text-white/80 text-center sm:text-left">No spam ever. Unsubscribe with one click.</p>
+            </div>
+
+            {/* Close button */}
+            <button
+              onClick={() => setShowNewsletter(false)}
+              className="absolute top-2 right-2 text-white hover:text-yellow-200 transition"
+              aria-label="Close newsletter"
+            >
+              <X size={24} />
             </button>
-          </form>
-          <p className="text-sm mt-2">{message}</p>
+          </div>
         </section>
       )}
+
+      {/* Add this to your existing styles */}
+      <style jsx>{`
+        @keyframes slideUp {
+          from {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7);
+          }
+          
+          70% {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 10px rgba(255, 204, 0, 0);
+          }
+          
+          100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(255, 204, 0, 0);
+          }
+        }
+      `}</style>
 
       {/* Embedded YouTube Videos Section - Improved for mobile */}
       <div className="w-full flex flex-col items-center py-8">
