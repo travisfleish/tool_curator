@@ -310,7 +310,7 @@ export default function Home() {
               </svg>
             </button>
 
-            {/* Carousel Item */}
+            {/* Carousel Item - UPDATED WITH CATEGORY */}
             {tools.length > 0 && (
               <div className="w-full flex justify-center px-8">
                 <div
@@ -332,6 +332,12 @@ export default function Home() {
                     </a>
                     <ExternalLink className="ml-2 w-4 h-4 text-gray-500" />
                   </h3>
+                  {/* Add category badge here */}
+                  {tools[currentSlide]?.category && (
+                    <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mt-1 mb-2">
+                      {tools[currentSlide]?.category}
+                    </span>
+                  )}
                   <p className="text-gray-600 text-center">{tools[currentSlide]?.short_description}</p>
                 </div>
               </div>
@@ -361,7 +367,7 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          // Desktop Grid View with plain white cards and hover effect
+          // Desktop Grid View with plain white cards and hover effect - UPDATED WITH CATEGORY
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {tools.slice(0,8).map((tool, index) => {
               const imageUrl = tool.screenshot_url && tool.screenshot_url.trim() !== ""
@@ -394,6 +400,12 @@ export default function Home() {
                     </a>
                     <ExternalLink className="ml-2 w-4 h-4 text-gray-500" />
                   </h3>
+                  {/* Add category badge here */}
+                  {tool.category && (
+                    <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mt-1 mb-1">
+                      {tool.category}
+                    </span>
+                  )}
                   <p className="text-gray-600 text-center mt-1">{tool.short_description}</p>
                 </div>
               );
